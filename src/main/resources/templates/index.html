@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba Libro</title>
+</head>
+<body>
+
+<h1>Libros</h1>
+<br/>
+<div>
+    <form th:action="@{/}">
+        <label for="palabraClave">Buscar</label>
+        <input type="text" name="palabraClave" id="palabraClave" th:value="${palabraClave}"/>
+
+        <input type="submit" name="buscar" id="buscar" value="Buscar"/>
+        <input type="button" value="Limpiar" onclick="limpiarCampos()"/>
+    </form>
+
+</div>
+<br/>
+<a th:href="@{/agregar}">Crear Libro</a>
+
+<div th:if="${libros != null and !libros.isEmpty()}">
+    <br/>
+    <table border="1">
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Código ISBN</th>
+            <th>Calificación</th>
+            <th>Reseña</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        <tr th:each="libro : ${libros}">
+            <td th:text="${libro.titulo}"></td>
+            <td th:text="${libro.autor}"></td>
+            <td th:text="${libro.codigoIsbn}"></td>
+            <td th:text="${libro.calificacion}"></td>
+            <td th:text="${libro.resena}"></td>
+            <td><a th:href="@{/editar(codigoIsbn=${libro.codigoIsbn})}" th:text="Editar"/></td>
+            <td><a th:href="@{/eliminar(codigoIsbn=${libro.codigoIsbn})}" th:text="Eliminar"/></td>
+        </tr>
+    </table>
+</div>
+<div th:if="${libros == null or libros.isEmpty()}">
+    La lista de libros esta vacía
+</div>
+<script type="text/javascript">
+    function limpiarCampos() {
+        window.location = '/';
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar libro</title>
+</head>
+<body>
+<h1>Modificar Libro</h1>
+<a th:href="@{/}">Regresar</a>
+<br/>
+<div>
+    <form th:action="@{/guardar}" method="post" th:object="${libro}">
+        <label for="titulo">Título</label>
+        <input type="text" name="titulo" th:field="*{titulo}" id="titulo" required/>
+
+        <label for="autor">Autor</label>
+        <input type="text" name="autor" th:field="*{autor}" id="autor" required/>
+
+        <label for="codigoIsbn">Codigo Isbn</label>
+        <input type="text" name="codigoIsbn" th:field="*{codigoIsbn}" id="codigoIsbn" maxlength="13" required/>
+
+        <label for="calificacion">Calificación</label>
+        <input type="number" name="calificacion" th:field="*{calificacion}" id="calificacion"/>
+
+        <label for="resena">Reseña</label>
+        <input type="text" name="resena" th:field="*{resena}" id="resena"/>
+        <br/>
+        <input type="submit" name="guardar" value="Guardar"/>
+    </form>
+</div>
+</body>
+</html>
