@@ -23,9 +23,16 @@ public class ControladorInicio {
         var libros = libroService.listarLibros(palabraClave);
         model.addAttribute("libros",libros);
         model.addAttribute("palabraClave",palabraClave);
-        return "index";
+        return "vistaCliente";
     }
 
+    @GetMapping("/index")
+    public String inicioAdmin(Model model, @Param("palabraClave") String palabraClave){
+        var libros = libroService.listarLibros(palabraClave);
+        model.addAttribute("libros",libros);
+        model.addAttribute("palabraClave",palabraClave);
+        return "index";
+    }
     @GetMapping("/agregar")
     public String agregar(Libro libro, Model model){
         model.addAttribute("libro",libro);
@@ -43,6 +50,13 @@ public class ControladorInicio {
         libro = libroService.encontrarLibro(libro);
         model.addAttribute("libro", libro);
         return "modificar";
+    }
+
+    @GetMapping("/visualizar")
+    public String visualizar(Libro libro, Model model){
+        libro = libroService.encontrarLibro(libro);
+        model.addAttribute("libro", libro);
+        return "visualizarLibroVistaCliente";
     }
 
     @GetMapping("/eliminar")
