@@ -18,8 +18,25 @@
         <input type="text" name="palabraClave" id="palabraClave" th:value="${palabraClave}" class="form-control"/>
 <div style="margin-top: 10px;">
         <input class="btn btn-primary" type="submit" name="buscar" id="buscar" value="Buscar"/>
-        <input class="btn btn-primary" type="button" value="Limpiar" onclick="limpiarCampos()"/>
+        <input id= "limpiarBasico" class="btn btn-primary" type="button" value="Limpiar" onclick="limpiarCampos()"/>
 </div>
+    </form>
+
+</div>
+
+<div class="d-grid gap-2 d-md-block mb-3" style="text-align: center;margin: auto; width: 400px">
+    <form style="text-align: center;" th:action="@{/}">
+
+        <label for="palabraClaveAutor">Autor</label>
+        <input type="text" name="palabraClaveAutor" id="palabraClaveAutor" th:value="${palabraClaveAutor}" class="form-control"/>
+        <label for="palabraClaveTitulo">Titulo</label>
+        <input type="text" name="palabraClaveTitulo" id="palabraClaveTitulo" th:value="${palabraClaveTitulo}" class="form-control"/>
+        <label for="palabraClaveIsbn">Isbn</label>
+        <input type="text" name="palabraClaveIsbn" id="palabraClaveIsbn" th:value="${palabraClaveIsbn}" class="form-control"/>
+        <div style="margin-top: 10px;">
+            <input class="btn btn-primary" type="submit" name="buscarAvanzado" id="buscarAvanzado" value="Buscar"/>
+            <input id= "limpiarAvanzado" class="btn btn-primary" type="button" value="Limpiar" onclick="limpiarCampos()"/>
+        </div>
     </form>
 
 </div>
@@ -27,7 +44,7 @@
 
 <div th:if="${libros != null and !libros.isEmpty()}">
     <br/>
-    <table class="table table-sm" style="margin: 0 auto;">
+    <table id="miTabla" class="table table-sm" style="margin: 0 auto;">
         <tr>
             <th style="text-align: center;">Título</th>
             <th style="text-align: center;">Autor</th>
@@ -46,6 +63,7 @@
             </td>
 
         </tr>
+
     </table>
 </div>
 <div th:if="${libros == null or libros.isEmpty()}">

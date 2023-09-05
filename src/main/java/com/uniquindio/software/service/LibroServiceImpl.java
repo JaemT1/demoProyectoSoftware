@@ -23,6 +23,15 @@ public class LibroServiceImpl implements LibroService{
         return (ArrayList<Libro>) libroDao.findAll();
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public ArrayList<Libro> listarLibrosAvanzada(String palabraClaveAutor, String palabraClaveTitulo, String palabraClaveIsbn) {
+        if (palabraClaveAutor != null || palabraClaveTitulo !=null || palabraClaveIsbn !=null){
+            return (ArrayList<Libro>) libroDao.findAllAvanzado(palabraClaveAutor,palabraClaveTitulo,palabraClaveIsbn);
+        }
+        return (ArrayList<Libro>) libroDao.findAll();
+    }
+
 
     @Override
     @Transactional
@@ -41,4 +50,7 @@ public class LibroServiceImpl implements LibroService{
     public Libro encontrarLibro(Libro libro) {
         return libroDao.findById(libro.getCodigoIsbn()).orElse(null);
     }
+
+
+
 }
